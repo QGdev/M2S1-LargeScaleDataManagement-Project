@@ -34,8 +34,6 @@ Pour cela nous possédons plusieurs ressources à notre disposition :
 * Une implémentation de pagerank en pig
 * Une implémentation de pagerank en spark
 
-Les codes fournis sont disponible sur [github](https://github.com/momo54/large_scale_data_management)
-
 ## Résultats
 ### Le plus grand pagerank
 
