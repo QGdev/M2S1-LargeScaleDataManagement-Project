@@ -2,9 +2,9 @@
 
 ## Le groupe
 Notre groupe est composé de 3 étudiants de master 2 en ALMA à Nantes Université :
-* Quentin Gomes Dos Reis
-* Rodrigue Meunier
-* Matthéo Lécrivain
+* [Quentin Gomes Dos Reis](https://github.com/QGdev)
+* [Rodrigue Meunier](https://github.com/Rod4401)
+* [Matthéo Lécrivain](https://github.com/MattheoLec)
 
 ## Sujet
 Le sujet est disponible sur [madoc](https://madoc.univ-nantes.fr/mod/assign/view.php?id=1952911).
