@@ -28,7 +28,7 @@ Faites attention au positionnement des données (voir l’article NSDI), je veux
 ```
 ## Description du projet
 L'objectif de ce travail consiste à évaluer les performances de l'algorithme de pagerank entre la version pig et spark sur 
-[google cloud plateform ](https://cloud.google.com).
+[Google Cloud Plateform ](https://cloud.google.com).
 Pour cela nous possédons plusieurs ressources à notre disposition :
 * 50$ de crédit sur google cloud pour nous permettre de créer et d'utiliser des clusters sur le cloud
 * Une implémentation de pagerank en pig
