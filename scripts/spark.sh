@@ -57,9 +57,9 @@ gsutil cp ${PySpark} ${BucketPath} # if some repetitions, hide this line because
 gsutil rm -rf ${BucketPathOut}
 
 ## run
-StartRuntime=$(date +"%Y-%m-%d %T.%N")
-gcloud dataproc jobs submit ${Spark} --region ${Region} --cluster ${ClusterName} ${BucketName}pagerank-notype.py  -- gs://myown_bucket/small_page_links.nt 3
-EndRuntime=$(date +"%Y-%m-%d %T.%N")
+StartRuntime=$(date +%s%N)
+gcloud dataproc jobs submit ${Spark} --region ${Region} --cluster ${ClusterName} ${BucketName}pagerank-notype.py  -- ${BucketData} 3
+EndRuntime=$(date +%s%N)
 
 echo "END OF PROCESSING PART"
 
@@ -78,8 +78,10 @@ echo "START_TIME" >> duration_results.txt
 echo ${StartRuntime} >> duration_results.txt
 echo "END_TIME" >> duration_results.txt
 echo ${EndRuntime} >> duration_results.txt
+echo "TIME" >> duration_results.txt
+echo `expr $EndRuntime - $StartRuntime` >> duration_results.txt
 
 cd ..
 
 ## delete cluster
-gcloud dataproc clusters delete ${ClusterName} --region ${Region}
+gcloud dataproc clusters delete ${ClusterName} --region ${Region} --quiet
