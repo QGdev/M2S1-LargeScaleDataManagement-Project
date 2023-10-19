@@ -34,7 +34,15 @@ Pour cela nous possédons plusieurs ressources à notre disposition :
 * Une implémentation de pagerank en pig
 * Une implémentation de pagerank en spark
 
+
 ## Résultats
+
+### Les scripts bash utilisés
+Tous les scripts sont présent dans le dossier scripts.
+Le dossier contient :
+* [pig.sh]() : Contient le code permettant de créer un cluster et d'executer pagerank avec [Pig](https://fr.wikipedia.org/wiki/Apache_Pig)
+* [spark.sh]() : Contient le code permettant de créer un cluster et d'executer pagerank avec [Spark](https://fr.wikipedia.org/wiki/Apache_Spark)
+* [snakefile.XXX]() : Contient le code [Snakemake](https://snakemake.readthedocs.io/en/stable/index.html) permettant d'opérer toutes les executions et de reprendre si échec pour éviter de perdre toutes les données obtenues.
 ### Le plus grand pagerank
 
 ### Comparaisons
