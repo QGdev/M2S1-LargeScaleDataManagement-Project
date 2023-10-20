@@ -1,0 +1,16 @@
+# pig page rank rule
+rule run_pig_pr:
+    input: "./pig.sh"
+    output: "./outPig/"
+    shell:
+
+# spark page rank rule
+rule run_spark_pr:
+    input: "./spark.sh"
+    output: "./outSpark/"
+    shell:
+
+# workflow definition
+workflow:
+    rule run_pig_pr
+    rule run_spark_pr
