@@ -97,12 +97,7 @@ if __name__ == "__main__":
 
     # Loads all URLs with other URL(s) link to from input file and initialize ranks of them to one.
     ranks = links.map(lambda url_neighbors: (url_neighbors[0], 1.0))
-
-    print("###   TIME MEASUREMENT START   ###")
-    start_time = time.time_ns()
-
-    times = [0 for _ in range(int(sys.argv[2]))]
-
+    
     # Calculates and updates URL ranks continuously using PageRank algorithm.
     for iteration in range(int(sys.argv[2])):
         # Calculates URL contributions to the rank of other URLs.
@@ -114,8 +109,10 @@ if __name__ == "__main__":
         # Re-calculates URL ranks based on neighbor contributions.
         ranks = contribs.reduceByKey(add).mapValues(lambda rank: rank * 0.85 + 0.15)
 
-        times[iteration] = time.time_ns()
 
+    print("###   TIME MEASUREMENT START   ###")
+    start_time = time.time_ns()
+    results = ranks.collect();
     end_time = time.time_ns()
     print("###   TIME MEASUREMENT END   ###")
 
@@ -126,13 +123,10 @@ if __name__ == "__main__":
     time_file.write(f'{end_time}\n')
     time_file.write("TIME\n")
     time_file.write(f'{end_time - start_time}\n')
-    for i in range(int(sys.argv[2])):
-        time_file.write(f'TIME_ITERATION_{i}\n')
-        time_file.write(f'{times[i]}\n')
     time_file.close()
 
     # Collects all URL ranks and dump them to console.
-    for (link, rank) in ranks.collect():
+    for (link, rank) in results:
         line = f'{link} has rank: {rank}.'
         print(line)
         result_file.write(f'{line}\n')
