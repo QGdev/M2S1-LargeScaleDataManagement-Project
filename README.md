@@ -51,15 +51,13 @@ Le dossier contient :
 | ------------- | -------------|
 | 2 | xxx|
 | 4 | xxx |
-| 6 | xxx |
-| 8 | xxx |
+| 5 | xxx |
 #### Spark
 | Nombre de workers | Tps d'exécution  
 | ------------- | -------------|
 | 2 | xxx |
 | 4 | xxx |
-| 6 | xxx |
-| 8 | xxx |
+| 5 | xxx |
 
 ### La meilleure techno
 | Rank | Tps d'exécution | Techno |
