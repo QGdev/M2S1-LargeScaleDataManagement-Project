@@ -1,4 +1,11 @@
 #!/usr/bin/python
+
+import os
+import re
+import sys
+import time as timer
+import json
+
 from org.apache.pig.scripting import *
 
 INIT = Pig.compile("""
@@ -35,17 +42,34 @@ STORE new_pagerank
     USING PigStorage('\t');
 """)
 
-params = { 'd': '0.85', 'docs_in': 'gs://private_lsd_project/out/pagerank_data_simple' }
+params = { 'd': '0.85', 'docs_in': 'gs://ermite-le-bucket/out/pagerank_data_simple' }
+
+timesStats = {}
+
+timesStats['start_time'] = timer.time()
 
 stats = INIT.bind(params).runSingle()
 if not stats.isSuccessful():
       raise 'failed initialization'
 
 for i in range(3):
-   out = "gs://private_lsd_project/out/pagerank_data_" + str(i + 1)
+   out = "gs://ermite-le-bucket/out/pagerank_data_" + str(i + 1)
    params["docs_out"] = out
    Pig.fs("rmr " + out)
    stats = UPDATE.bind(params).runSingle()
    if not stats.isSuccessful():
       raise 'failed'
    params["docs_in"] = out
+
+timesStats['end_time'] = timer.time()
+
+# For time measurment
+time_file = open("time.json", 'a')
+
+#   Write time measurment result
+timesStats['time'] = timesStats['end_time'] - timesStats['start_time']
+time_file.write(json.dumps(timesStats))
+time_file.close()
+
+args = ["time.json", "gs://ermite-le-bucket/out"]
+os.system("gsutil cp time.json gs://ermite-le-bucket/time.json")
