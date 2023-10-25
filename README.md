@@ -56,7 +56,7 @@ Le dossier contient :
 | Nombre de workers | Tps d'exécution  
 | ------------- | -------------|
 | 2 | 43min 39s 800ms <br> ~2619800 ms |
-| 4 | xxx |
+| 4 | 37min 41s 762ms  <br> ~2261762 ms |
 | 5 | xxx |
 
 ### La meilleure techno
