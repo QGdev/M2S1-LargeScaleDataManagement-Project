@@ -43,7 +43,34 @@ Le dossier contient :
 * [pig.sh](https://github.com/QGdev/M2S1-LargeScaleDataManagement-Project/blob/main/scripts/pig.sh) : Contient le code permettant de créer un cluster et d'executer pagerank avec [Pig](https://fr.wikipedia.org/wiki/Apache_Pig)
 * [spark.sh](https://github.com/QGdev/M2S1-LargeScaleDataManagement-Project/blob/main/scripts/spark.sh) : Contient le code permettant de créer un cluster et d'executer pagerank avec [Spark](https://fr.wikipedia.org/wiki/Apache_Spark)
 * [snakefile](https://github.com/QGdev/M2S1-LargeScaleDataManagement-Project/blob/main/scripts/snakefile) : Contient le code [Snakemake](https://snakemake.readthedocs.io/en/stable/index.html) permettant d'opérer toutes les executions et de reprendre si échec pour éviter de perdre toutes les données obtenues.
-### Le plus grand pagerank
+
+### Benchmarks
+
+#### Pig
+| Nombre de workers | Tps d'exécution  
+| ------------- | -------------|
+| 2 | xxx|
+| 4 | xxx |
+| 6 | xxx |
+| 8 | xxx |
+#### Spark
+| Nombre de workers | Tps d'exécution  
+| ------------- | -------------|
+| 2 | xxx |
+| 4 | xxx |
+| 6 | xxx |
+| 8 | xxx |
+
+### La meilleure techno
+| Rank | Tps d'exécution | Techno |
+| ------------- | -------------| -------------|
+| 1 | xxx | pig/spark |
+| 2 | xxx | pig/spark |
+| 3 | xxx | pig/spark |
+
+### Le plus grand pageRank
+
+Donc la page dbPedia qui est la plus référencée est : 
 
 ### Comparaisons
 
