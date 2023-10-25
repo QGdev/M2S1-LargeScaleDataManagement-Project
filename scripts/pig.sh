@@ -58,7 +58,7 @@ gsutil rm -rf ${BucketPathOut}
 
 ## run
 StartRuntime=$(date +%s%N)
-gcloud dataproc jobs submit pig --region ${Region} --cluster ${ClusterName} -f ${BucketPath}/${PyPig}
+gcloud dataproc jobs submit ${Pig} --region ${Region} --cluster ${ClusterName} -f ${BucketPath}/${PyPig}
 EndRuntime=$(date +%s%N)
 
 echo "END OF PROCESSING PART"
