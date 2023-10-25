@@ -30,6 +30,7 @@ import os
 import re
 import sys
 import time
+import json
 from operator import add
 from typing import Iterable, Tuple
 
@@ -55,8 +56,9 @@ def parseNeighbors(urls):
 
 if __name__ == "__main__":
 
-    if len(sys.argv) != 6:
-        print("Usage: pagerank <file> <iterations> <destination> <data_out_file_name> <time_out_file_name>", file=sys.stderr)
+    print(len(sys.argv))
+    if len(sys.argv) < 6 or len(sys.argv) > 7:
+        print("Usage: pagerank <file> <iterations> <destination> <data_out_file_name> <time_out_file_name> <top10_out_file_name[optionnal]>", file=sys.stderr)
         sys.exit(-1)
 
     #   Checks if provided file already exists
@@ -74,9 +76,25 @@ if __name__ == "__main__":
     else:
         time_file = open(sys.argv[5], 'a')
 
+    if len(sys.argv) >= 7:
+        compute_top = True
+        if os.path.exists(sys.argv[6]):
+            print(f'The file {sys.argv[6]} already exists.')
+            sys.exit(-1)
+        else:
+            top_file = open(sys.argv[6], 'a')
+    else:
+        compute_top = False
+
     print("WARN: This is a naive implementation of PageRank and is given as an example!\n" +
             "Please refer to PageRank implementation provided by graphx",
             file=sys.stderr)
+
+    stats = {}
+    results_json = {}
+    results_top_json = {}
+
+    stats['start_time'] = time.time_ns()
 
     # Initialize the spark context.
     spark = SparkSession\
@@ -109,31 +127,38 @@ if __name__ == "__main__":
         # Re-calculates URL ranks based on neighbor contributions.
         ranks = contribs.reduceByKey(add).mapValues(lambda rank: rank * 0.85 + 0.15)
 
+    results = ranks.collect()
 
-    print("###   TIME MEASUREMENT START   ###")
-    start_time = time.time_ns()
-    results = ranks.collect();
-    end_time = time.time_ns()
-    print("###   TIME MEASUREMENT END   ###")
-
-    #   Write time measurment result
-    time_file.write("START_TIME\n")
-    time_file.write(f'{start_time}\n')
-    time_file.write("END_TIME\n")
-    time_file.write(f'{end_time}\n')
-    time_file.write("TIME\n")
-    time_file.write(f'{end_time - start_time}\n')
-    time_file.close()
+    if (compute_top):
+        results_top = ranks.takeOrdered(10, key=lambda x: -x[1])
+    
+    spark.stop()
+    stats['end_time'] = time.time_ns()
 
     # Collects all URL ranks and dump them to console.
     for (link, rank) in results:
-        line = f'{link} has rank: {rank}.'
-        print(line)
-        result_file.write(f'{line}\n')
+        results_json[link] = rank
 
+    if (compute_top):
+        for (link, rank) in results_top:
+            results_top_json[link] = rank
+
+    #   Write results
+    result_file.write(json.dumps(results_json))
     result_file.close()
-    spark.stop()
+
+    if(compute_top):
+        top_file.write(json.dumps(results_top_json))
+        top_file.close()
+
+    #   Write time measurment result
+    stats['time'] = stats['end_time'] - stats['start_time']
+    time_file.write(json.dumps(stats))
+    time_file.close()
 
     # Push files into the bucket
     os.system(f'gsutil cp {sys.argv[4]} {sys.argv[3]}/{sys.argv[4]}')
     os.system(f'gsutil cp {sys.argv[5]} {sys.argv[3]}/{sys.argv[5]}')
+
+    if (compute_top):
+        os.system(f'gsutil cp {sys.argv[6]} {sys.argv[3]}/{sys.argv[6]}')

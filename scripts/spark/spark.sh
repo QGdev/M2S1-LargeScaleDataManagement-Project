@@ -8,10 +8,10 @@
 #           - Number of worker (2)
 #           - Size of the worker disk (50)
 #           - Size of the master disk (50)
-#           - Number of iterations (3)
+#           - Number of iterations
 #           - Project ID
 #   
-#   Example: sh run.sh gs://ermite-le-bucket/ gs://public_lddm_data/small_page_links.nt 2 50 50 3 largescaledataproject europe-west1 europe-west1-c
+#   Example: sh spark.sh gs://ermite-le-bucket/ gs://public_lddm_data/small_page_links.nt 2 50 50 3 largescaledataproject europe-west1 europe-west1-c
 #
 
 # about
@@ -46,8 +46,9 @@ NbIterations=$6
 
 # files names
 TimeGlobalFile=duration_results_global.txt
-TimeFile=duration_results.txt
-DataOutFile=data_out.txt
+TimeFile=duration_results.json
+DataOutFile=data_out.json
+TopOutFile=top_out.json
 
 # results
 DirectoryResultName=PYSPARK_${WorkersNumber}_${WorkersDiskSize}_${MasterDiskSize}_${Region}_${Zone}_${StartedDate}
@@ -64,7 +65,7 @@ gsutil rm -rf ${BucketPathOut}
 
 ## run
 StartRuntime=$(date +%s%N)
-gcloud dataproc jobs submit ${Spark} --region ${Region} --cluster ${ClusterName} ${BucketName}pagerank-notype.py  -- ${BucketData} ${NbIterations} ${BucketPathOut} ${DataOutFile} ${TimeFile}
+gcloud dataproc jobs submit ${Spark} --region ${Region} --cluster ${ClusterName} ${BucketName}pagerank-notype.py  -- ${BucketData} ${NbIterations} ${BucketPathOut} ${DataOutFile} ${TimeFile} ${TopOutFile}
 EndRuntime=$(date +%s%N)
 
 echo "END OF PROCESSING PART"
@@ -77,19 +78,10 @@ echo ${BucketPathOut}
 echo ${DirectoryResultName}
 gsutil cp -r ${BucketPathOut}/* ${DirectoryResultName}
 
-cd ${DirectoryResultName}
-
-# Generate operation duration file
-[ -f ${TimeGlobalFile} ] && rm ${TimeGlobalFile}
-touch ${TimeGlobalFile}
-echo "START_TIME" >> "${TimeGlobalFile}"
-echo ${StartRuntime} >> "${TimeGlobalFile}"
-echo "END_TIME" >> "${TimeGlobalFile}"
-echo ${EndRuntime} >> "${TimeGlobalFile}"
-echo "TIME" >> "${TimeGlobalFile}"
-echo `expr $EndRuntime - $StartRuntime` >> "${TimeGlobalFile}"
-
-cd ..
+# display results
+cat ${DirectoryResultName}/${DataOutFile}
+cat ${DirectoryResultName}/${TopOutFile}
+cat ${DirectoryResultName}/${TimeFile}
 
 ## delete cluster
 gcloud dataproc clusters delete ${ClusterName} --region ${Region} --quiet
