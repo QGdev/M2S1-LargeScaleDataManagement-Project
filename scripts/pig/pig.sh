@@ -81,6 +81,7 @@ echo ${EndRuntime} >> duration_results.txt
 echo "TIME" >> duration_results.txt
 echo `expr $EndRuntime - $StartRuntime` >> duration_results.txt
 
+gsutil cp ${BucketPath}time.json .
 cd ..
 
 ## delete cluster
