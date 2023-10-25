@@ -49,13 +49,13 @@ Le dossier contient :
 #### Pig
 | Nombre de workers | Tps d'exécution  
 | ------------- | -------------|
-| 2 | xxx|
+| 2 | xxx |
 | 4 | xxx |
 | 5 | xxx |
 #### Spark
 | Nombre de workers | Tps d'exécution  
 | ------------- | -------------|
-| 2 | xxx |
+| 2 | 43min 39s 800ms <br> ~2619800 ms |
 | 4 | xxx |
 | 5 | xxx |
 
