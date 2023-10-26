@@ -18,9 +18,6 @@
 # This bash script allows you to automatically create and delete a cluster while achieving a page rank on the Google Cloud Platform in the chosen technology (spark).
 # To use it, simply choose the technology where it is requested in the settings section.
 
-
-## constants
-
 # project
 StartedDate=$(date +"%H-%M-%S")
 
@@ -32,16 +29,14 @@ BucketData=$2
 WorkersNumber=$3
 WorkersDiskSize=$4
 MasterDiskSize=$5
-
 ProjectName=$7
 
 # cluster
 ClusterName=ermite-le-cluster
 Region=$8
 Zone=$9
-
 Spark=pyspark
-PySpark=pagerank-notype.py
+PySpark=pagerank-classic.py
 NbIterations=$6
 
 # files names
@@ -51,7 +46,7 @@ DataOutFile=data_out.json
 TopOutFile=top_out.json
 
 # results
-DirectoryResultName=PYSPARK_${WorkersNumber}_${WorkersDiskSize}_${MasterDiskSize}_${Region}_${Zone}_${StartedDate}
+DirectoryResultName=PYSPARK_CLASSIC_${WorkersNumber}_${WorkersDiskSize}_${MasterDiskSize}_${Region}_${Zone}_${StartedDate}
 BucketPathOut=${BucketPath}${DirectoryResultName}
 
 ## create the cluster
@@ -64,10 +59,7 @@ gsutil cp ${PySpark} ${BucketPath} # if some repetitions, hide this line because
 gsutil rm -rf ${BucketPathOut}
 
 ## run
-StartRuntime=$(date +%s%N)
-gcloud dataproc jobs submit ${Spark} --region ${Region} --cluster ${ClusterName} ${BucketName}pagerank-classic.py  -- ${BucketData} ${NbIterations} ${BucketPathOut} ${DataOutFile} ${TimeFile} ${TopOutFile}
-EndRuntime=$(date +%s%N)
-
+gcloud dataproc jobs submit ${Spark} --region ${Region} --cluster ${ClusterName} ${BucketName}pagerank-optimised.py  -- ${BucketData} ${NbIterations} ${BucketPathOut} ${DataOutFile} ${TimeFile} ${TopOutFile}
 echo "END OF PROCESSING PART"
 
 # create folder for this execution
@@ -79,7 +71,7 @@ echo ${DirectoryResultName}
 gsutil cp -r ${BucketPathOut}/* ${DirectoryResultName}
 
 # display results
-cat ${DirectoryResultName}/${DataOutFile}
+#cat ${DirectoryResultName}/${DataOutFile}  #Commented for obvious reasons
 cat ${DirectoryResultName}/${TopOutFile}
 cat ${DirectoryResultName}/${TimeFile}
 
