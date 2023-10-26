@@ -49,7 +49,8 @@ Le dossier contient :
 #### Pig
 | Nombre de workers | Tps d'exécution  
 | ------------- | -------------|
-| 2 | xxx |
+| 2 | 49min 2s 450ms <br> ~2942450 ms |
+| 3 | xxx |
 | 4 | xxx |
 | 5 | xxx |
 #### Spark
