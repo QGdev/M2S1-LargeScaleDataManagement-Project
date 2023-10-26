@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #
-#   SPARK benchmark runner
+#   SPARK benchmark runner for pagerank classic
 #       Parameters (in order):
 #           - Destination bucket, where everything will be stored (gs://ermite-le-bucket/)
 #           - Data source, where the data will be pulled out (gs://public_lddm_data/small_page_links.nt)
@@ -65,7 +65,7 @@ gsutil rm -rf ${BucketPathOut}
 
 ## run
 StartRuntime=$(date +%s%N)
-gcloud dataproc jobs submit ${Spark} --region ${Region} --cluster ${ClusterName} ${BucketName}pagerank-notype.py  -- ${BucketData} ${NbIterations} ${BucketPathOut} ${DataOutFile} ${TimeFile} ${TopOutFile}
+gcloud dataproc jobs submit ${Spark} --region ${Region} --cluster ${ClusterName} ${BucketName}pagerank-classic.py  -- ${BucketData} ${NbIterations} ${BucketPathOut} ${DataOutFile} ${TimeFile} ${TopOutFile}
 EndRuntime=$(date +%s%N)
 
 echo "END OF PROCESSING PART"

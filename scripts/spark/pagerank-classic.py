@@ -20,11 +20,19 @@
 #
 
 """
-This is an example implementation of PageRank. For more conventional use,
-Please refer to PageRank implementation provided by graphx
+    PYSPARK PAGERANK CLASSIC
+        
+        Modified from this code :
+            https://github.com/momo54/large_scale_data_management/blob/main/pyspark/pagerank-notype.py
 
-Example Usage:
-bin/spark-submit examples/src/main/python/pagerank.py data/mllib/pagerank_data.txt 10
+        Parameters needed in order to be executed:
+
+            - file :                                Where the input data file is stored
+            - iterations :                          Number of iterations that the PYSPARK will execute
+            - destination :                         The path of the destination files (Must be a path to a bucket)
+            - data_out_file_name :                  The name of the file where the data will be stored on the bucket
+            - time_out_file_name :                  The name of the file where time measurements will be stored on the bucket
+            - top10_out_file_name [OPTIONNAL] :     The name of the file where the data will be stored on the bucket
 """
 import os
 import re
