@@ -52,7 +52,7 @@ Le dossier contient :
 | 2 | 49min 2s 450ms <br> ~2942450 ms |
 | 3 | xxx |
 | 4 | xxx |
-| 5 | xxx |
+| 5 | 33min 12s 746ms <br> ~1992746 ms  |
 #### Spark
 | Nombre de workers | Tps d'exécution  
 | ------------- | -------------|
