@@ -71,5 +71,4 @@ timesStats['time'] = timesStats['end_time'] - timesStats['start_time']
 time_file.write(json.dumps(timesStats))
 time_file.close()
 
-args = ["time.json", "gs://ermite-le-bucket/out"]
 os.system("gsutil cp time.json gs://ermite-le-bucket/time.json")
