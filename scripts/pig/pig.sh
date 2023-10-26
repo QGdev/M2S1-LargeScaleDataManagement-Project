@@ -4,13 +4,12 @@
 #   PIG benchmark runner
 #       Parameters (in order):
 #           - Destination bucket, where everything will be stored (gs://ermite-le-bucket/)
-#           - Data source, where the data will be pulled out (gs://public_lddm_data/small_page_links.nt)
 #           - Number of worker (2)
 #           - Size of the worker disk (50)
 #           - Size of the master disk (50)
 #           - Project ID
 #   
-#   Example: sh pig.sh gs://ermite-le-bucket/ gs://public_lddm_data/small_page_links.nt 2 50 50 largescaledataproject europe-west1 europe-west1-c
+#   Example: sh pig.sh gs://ermite-le-bucket/ 2 50 50 largescaledataproject europe-west1 europe-west1-c
 #
 
 # about
@@ -26,19 +25,18 @@ StartedDate=$(date +"%H-%M-%S")
 # bucket
 BucketPath=$1
 BucketPathOut=${BucketPath}out
-BucketData=$2
 
 # settings
-WorkersNumber=$3
-WorkersDiskSize=$4
-MasterDiskSize=$5
+WorkersNumber=$2
+WorkersDiskSize=$3
+MasterDiskSize=$4
 
-ProjectName=$6
+ProjectName=$5
 
 # cluster
 ClusterName=ermite-le-cluster
-Region=$7
-Zone=$8
+Region=$6
+Zone=$7
 
 Pig=pig
 PyPig=dataproc.py
@@ -57,32 +55,21 @@ gsutil cp ${PyPig} ${BucketPath} # if some repetitions, hide this line because u
 gsutil rm -rf ${BucketPathOut}
 
 ## run
-StartRuntime=$(date +%s%N)
 gcloud dataproc jobs submit ${Pig} --region ${Region} --cluster ${ClusterName} -f ${BucketPath}/${PyPig}
-EndRuntime=$(date +%s%N)
 
 echo "END OF PROCESSING PART"
+
+## delete cluster
+gcloud dataproc clusters delete ${ClusterName} --region ${Region} --quiet
 
 # create folder for this execution
 mkdir ${DirectoryResultName}
 
-# copy the result from bucket to local disk
-gsutil cp -r ${BucketPathOut} ${DirectoryResultName}
+# set the name of the out folder
+gsutil mv ${BucketPathOut} ${BucketPath}${DirectoryResultName}
 
 cd ${DirectoryResultName}
-
-# Generate operation duration file
-[ -f duration_results.txt ] && rm duration_results.txt
-touch duration_results.txt
-echo "START_TIME" >> duration_results.txt
-echo ${StartRuntime} >> duration_results.txt
-echo "END_TIME" >> duration_results.txt
-echo ${EndRuntime} >> duration_results.txt
-echo "TIME" >> duration_results.txt
-echo `expr $EndRuntime - $StartRuntime` >> duration_results.txt
-
+# copy the time file to local
 gsutil cp ${BucketPath}time.json .
 cd ..
 
-## delete cluster
-gcloud dataproc clusters delete ${ClusterName} --region ${Region} --quiet
