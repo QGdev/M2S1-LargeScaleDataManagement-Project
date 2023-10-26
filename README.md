@@ -59,6 +59,14 @@ Le dossier contient :
 | 4 | 37min 41s 762ms  <br> ~2261762 ms |
 | 5 | xxx |
 
+#### Spark "optimisé"
+| Nombre de workers | Tps d'exécution  
+| ------------- | -------------|
+| 2 | xxx |
+| 3 | xxx |
+| 4 | xxx |
+| 5 | 36min 52s 253ms  <br> ~2212253 ms |
+
 ### La meilleure techno
 | Rank | Tps d'exécution | Techno |
 | ------------- | -------------| -------------|
