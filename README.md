@@ -53,20 +53,22 @@ Le dossier contient :
 | 3 | xxx |
 | 4 | xxx |
 | 5 | 33min 12s 746ms <br> ~1992746 ms  |
+
 #### Spark
 | Nombre de workers | Tps d'exécution  
 | ------------- | -------------|
-| 2 | 43min 39s 800ms <br> ~2619800 ms |
-| 4 | 37min 41s 762ms  <br> ~2261762 ms |
-| 5 | xxx |
+| 2 | 46min 26s 277ms <br> ~2786277ms |
+| 3 | 44min 35s 995ms <br> ~2675995ms |
+| 4 | 39min 30s 678ms <br> ~2370678ms |
+| 5 | 38min 16s 472ms <br> ~2296472ms |
 
-#### Spark "optimisé"
+#### Spark "customisé"
 | Nombre de workers | Tps d'exécution  
 | ------------- | -------------|
-| 2 | xxx |
-| 3 | xxx |
-| 4 | xxx |
-| 5 | 36min 52s 253ms  <br> ~2212253 ms |
+| 2 | 44min 08s 723ms <br> ~2648723ms |
+| 3 | 38min 20s 164ms <br> ~2300164ms |
+| 4 | 40min 34s 209ms <br> ~2434209ms |
+| 5 | 36min 52s 253ms <br> ~2212253ms |
 
 ### La meilleure techno
 | Rank | Tps d'exécution | Techno |
