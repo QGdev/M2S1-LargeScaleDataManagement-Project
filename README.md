@@ -7,7 +7,7 @@ Notre groupe est composé de 3 étudiants de master 2 en ALMA à Nantes Universi
 * [Matthéo Lécrivain](https://github.com/MattheoLec)
 
 ## Sujet
-Le sujet est disponible sur [madoc](https://madoc.univ-nantes.fr/mod/assign/view.php?id=1952911).
+Le sujet est disponible sur [Madoc](https://madoc.univ-nantes.fr/mod/assign/view.php?id=1952911).
 Voici une copie : 
 ```
 Bonjour,
@@ -27,12 +27,24 @@ Le rendu est donc une URL.
 Faites attention au positionnement des données (voir l’article NSDI), je veux que vous évitiez le shuffle pour pagerank/neighbours.
 ```
 ## Description du projet
-L'objectif de ce travail consiste à évaluer les performances de l'algorithme de pagerank entre la version pig et spark sur 
-[Google Cloud Plateform ](https://cloud.google.com).
-Pour cela nous possédons plusieurs ressources à notre disposition :
-* 50$ de crédit sur google cloud pour nous permettre de créer et d'utiliser des clusters sur le cloud
-* Une implémentation de pagerank en pig
-* Une implémentation de pagerank en spark
+L'objectif de ce travail consiste à évaluer les performances de l'algorithme de pagerank entre la version [PIG](https://pig.apache.org/) et [Spark](https://spark.apache.org) sur 
+[Google Cloud Plateform](https://cloud.google.com).<br>
+Pour cela nous avions à notre disposition plusieurs ressources :
+* 50$ de crédit par personne sur Google CLoud Platform pour nous permettre de créer et d'utiliser des clusters sur le cloud
+* Une implémentation de pagerank en Apache PIG
+* Une implémentation de pagerank en [PySpark](https://spark.apache.org/docs/latest/api/python/index.html)
+
+## Condition d'exécution et matériel employé
+Les benchmarks ont été réalisés sur les mêmes datacenters Google à savoir *europe-west-6c (Zurich, Suisse)* et les données sont stockés sur le bucket Google *gs:///public_lddm_data/*.<br>
+Une fois les calculs effectués les données ont été stockées sur le datacenter Google *europe-west-1*.
+
+Concernant la configuration de noeuds, les noeuds dits "workers" et le noeud principal ont été configurés avec des configurations identiques dites *n1-standard-4* exécutant l'image *2.0-debian10*.<br>
+La configuration *n1-standard-4* a pour caractéristiques :
+| Processeurs virtuels | Mémoire (Go) | Nombre max. de disques persistants | Taille totale max. des disques persistants (Tio) | SSD local | Bande passante de sortie maximale (Gbit/s) |
+|----------------------|--------------|------------------------------------|--------------------------------------------------|-----------|--------------------------------------------|
+| 4                    | 15           | 128                                | 257                                              | Oui       | 10                                         |
+
+**D'après [https://cloud.google.com/compute/docs/general-purpose-machines](https://cloud.google.com/compute/docs/general-purpose-machines?hl=fr#n1-standard), en date du 27/10/2023**
 
 
 ## Résultats
