@@ -83,5 +83,9 @@ Donc la page dbPedia qui est la plus référencée est :
 
 ### Comparaisons
 
+[Comparison all](./schema/comparison_all.png)
+
+[Comparison spark & custom spark](./schema/comparison_spark_custom-spark.png)
+
 ## Licence
 
