@@ -50,8 +50,8 @@ Le dossier contient :
 | Nombre de workers | Tps d'exécution  
 | ------------- | -------------|
 | 2 | 49min 2s 450ms <br> ~2942450 ms |
-| 3 | xxx |
-| 4 | xxx |
+| 3 | 41min 59s 983ms <br> ~2519983 ms |
+| 4 | 39min 28s 539ms <br> ~2368539 ms |
 | 5 | 33min 12s 746ms <br> ~1992746 ms  |
 
 #### Spark
