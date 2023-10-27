@@ -46,12 +46,12 @@ Chacun de ses dossiers contiennent des scripts bash permettant de créer un clus
 * [spark-optimised.sh](https://github.com/QGdev/M2S1-LargeScaleDataManagement-Project/blob/main/scripts/spark/spark-optimised.sh) : Permet de tester le pagerank avec [PySpark](https://spark.apache.org/docs/latest/api/python/index.html) mais de avec le script dérivé du script original en exécutant le fichier Python [pagerank-optimised.py](https://github.com/QGdev/M2S1-LargeScaleDataManagement-Project/blob/main/scripts/spark/pagerank-optimised.py).
 
 ### Paramètres algorithme pagerank
-Pour l'algorithme de pagerank, il n'est possible que de jouer sur un seul paramètre, le nombre d'itérations de l'algorithme sur le jeu de données (plus ce nombre est élevé plus les indices de pagerank vont se propager loin). Dans notre cas ce paramètre est fixé à **3 itérations** et cela pour tous les technologies.
+Pour l'algorithme de pagerank, il n'est possible que de jouer sur un seul paramètre, le nombre d'itérations de l'algorithme sur le jeu de données (plus ce nombre est élevé, plus les indices de pagerank vont se propager loin). Dans notre cas, ce paramètre est fixé à **3 itérations** et cela pour toutes les technologies.
 
 
 ### Variable ajustée pour le benchmark
 Ici le but de ce benchmark va être de mesurer la performance des technologies en fonction du nombre de workers employés au sein du cluster.
-Dans notre cas, nous ferons varier cette dernière sur les valeurs suivantes:
+Dans notre cas, nous faisons varier ce nombre selon les valeurs suivantes:
 * 2 workers
 * 3 workers
 * 4 workers
@@ -59,10 +59,10 @@ Dans notre cas, nous ferons varier cette dernière sur les valeurs suivantes:
 
 
 ### Matériel
-Les benchmarks ont été réalisés sur les mêmes datacenters Google à savoir *europe-west-6c (Zurich, Suisse)* et les données sont stockés sur le bucket Google *gs:///public_lddm_data/*.<br>
-Une fois les calculs effectués les données ont été stockées sur le datacenter Google *europe-west-1*.
+Les benchmarks ont été réalisés sur les mêmes datacenters Google à savoir *europe-west-6c (Zurich, Suisse)* et les données sont stockées sur le bucket Google *gs:///public_lddm_data/*.<br>
+Une fois les calculs effectués, les données ont été stockées sur le datacenter Google *europe-west-1*.
 
-Concernant la configuration de noeuds, les noeuds dits "workers" et le noeud principal ont été configurés avec des configurations identiques dites *n1-standard-4* exécutant l'image *2.0-debian10*. Chaque noeuds possédait un espace disque de 50Go.
+Concernant la configuration de noeuds, les noeuds dits "workers" et le noeud principal ont été configurés avec des configurations identiques dites *n1-standard-4* exécutant l'image *2.0-debian10*. Chaque noeuds possède un espace disque de 500Go.
 
 La configuration *n1-standard-4* a pour caractéristiques :
 | Processeurs virtuels | Mémoire (Go) | Nombre max. de disques persistants | Taille totale max. des disques persistants (Tio) | SSD local | Bande passante de sortie maximale (Gbit/s) |
@@ -102,17 +102,9 @@ Les benchmarks ont été réalisés pour chaque technologie en faisant varier le
 | 4 | 40min 34s 209ms <br> ~2434209ms |
 | 5 | 36min 52s 253ms <br> ~2212253ms |
 
-### La meilleure technologie en fonction du nombre de workers
-| Nombre de workers | Temps d'exécution | Technologie |
-| ----------------- | ----------------- | ----------- |
-| 2 | xxx | pig/spark/spark modifié |
-| 3 | xxx | pig/spark/spark modifié |
-| 4 | xxx | pig/spark/spark modifié |
-| 4 | xxx | pig/spark/spark modifié |
-
 ### Notre TOP 10
-Nous avons également effectué des calculs afin d'obtenir les 10 meilleurs pages selon la valeur de pagerank calculée. <br>
-Le résultat est disponible au sein du fichier ![top_out.json](./top_out.json) et mis en forme au sein du tableau ci-dessous.
+Nous avons également effectué des calculs pour obtenir les 10 meilleures pages selon la valeur de pagerank calculée. <br>
+Le résultat est disponible dans le fichier ![top_out.json](./top_out.json) et sous forme de tableau ci-dessous.
 
 | Position | Page                                                       | Valeur du pagerank  |
 |----------|------------------------------------------------------------|---------------------|
