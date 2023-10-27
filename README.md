@@ -42,7 +42,6 @@ Tous les scripts sont présent dans le dossier scripts.
 Le dossier contient :
 * [pig.sh](https://github.com/QGdev/M2S1-LargeScaleDataManagement-Project/blob/main/scripts/pig.sh) : Contient le code permettant de créer un cluster et d'executer pagerank avec [Pig](https://fr.wikipedia.org/wiki/Apache_Pig)
 * [spark.sh](https://github.com/QGdev/M2S1-LargeScaleDataManagement-Project/blob/main/scripts/spark.sh) : Contient le code permettant de créer un cluster et d'executer pagerank avec [Spark](https://fr.wikipedia.org/wiki/Apache_Spark)
-* [snakefile](https://github.com/QGdev/M2S1-LargeScaleDataManagement-Project/blob/main/scripts/snakefile) : Contient le code [Snakemake](https://snakemake.readthedocs.io/en/stable/index.html) permettant d'opérer toutes les executions et de reprendre si échec pour éviter de perdre toutes les données obtenues.
 
 ### Benchmarks
 
@@ -99,6 +98,3 @@ Le résultat est disponible au sein du fichier ![top_out.json](./top_out.json) e
 ![](./schema/comparison_all.png)
 
 ![](./schema/comparison_spark_custom-spark.png)
-
-## Licence
-
