@@ -77,9 +77,22 @@ Le dossier contient :
 | 2 | xxx | pig/spark |
 | 3 | xxx | pig/spark |
 
-### Le plus grand pageRank
+### Notre TOP 10
+Nous avons également effectué des calculs afin d'obtenir les 10 meilleurs pages selon la valeur de pagerank calculée. <br>
+Le résultat est disponible au sein du fichier ![top_out.json](./top_out.json) et mis en forme au sein du tableau ci-dessous.
 
-Donc la page dbPedia qui est la plus référencée est : 
+| Position | Page                                                       | Valeur du pagerank  |
+|----------|------------------------------------------------------------|---------------------|
+| 1        | <http://dbpedia.org/resource/Living_people>                 | 36794.33146754483   |
+| 2        | <http://dbpedia.org/resource/United_States>                 | 13201.3401519812    |
+| 3        | <http://dbpedia.org/resource/Race_and_ethnicity_in_the_United_States_Census> | 10371.16200554135   |
+| 4        | <http://dbpedia.org/resource/List_of_sovereign_states>      | 5195.347361862181   |
+| 5        | <http://dbpedia.org/resource/United_Kingdom>                | 4923.821309315207   |
+| 6        | <http://dbpedia.org/resource/Year_of_birth_missing_%28living_people%29> | 4615.793976336983   |
+| 7        | <http://dbpedia.org/resource/France>                        | 4595.730518177776   |
+| 8        | <http://dbpedia.org/resource/Germany>                       | 4111.195621667527   |
+| 9        | <http://dbpedia.org/resource/Canada>                        | 3765.461560612457   |
+| 10       | <http://dbpedia.org/resource/Animal>                        | 3692.395898434715   |
 
 ### Comparaisons
 
