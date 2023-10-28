@@ -39,7 +39,7 @@ Pour cela nous avions à notre disposition plusieurs ressources :
 ### Les scripts bash utilisés
 Tous les scripts sont contenus dans des dossiers spécifiques à chaque technologie qui sont eux-mêmes au sein du dossier [scripts]((https://github.com/QGdev/M2S1-LargeScaleDataManagement-Project/blob/main/scripts)).
 
-Chacun de ses dossiers contiennent des scripts bash permettant de créer un cluster et d'exécuter le pagerank spécifique aux technologies testées, on y retrouve :
+Chacun de ces dossiers contient des scripts bash permettant de créer un cluster et d'exécuter le pagerank spécifique aux technologies testées, on y retrouve :
 
 * [pig.sh](https://github.com/QGdev/M2S1-LargeScaleDataManagement-Project/blob/main/scripts/pig/pig.sh) : Permet de tester le pagerank avec [Pig](https://fr.wikipedia.org/wiki/Apache_Pig) en exécutant le fichier Python [dataproc.py](https://github.com/QGdev/M2S1-LargeScaleDataManagement-Project/blob/main/scripts/pig/dataproc.py).
 * [spark-classic.sh](https://github.com/QGdev/M2S1-LargeScaleDataManagement-Project/blob/main/scripts/spark/spark-classic.sh) : Permet de tester le pagerank avec [PySpark](https://spark.apache.org/docs/latest/api/python/index.html) avec le script original en exécutant le fichier Python [pagerank-classic.py](https://github.com/QGdev/M2S1-LargeScaleDataManagement-Project/blob/main/scripts/spark/pagerank-classic.py).
