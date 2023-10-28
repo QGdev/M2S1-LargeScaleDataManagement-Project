@@ -122,10 +122,13 @@ Le résultat est disponible dans le fichier ![top_out.json](./top_out.json) et s
 ### Comparaisons
 
 ![](./schema/comparison_all.png)
-Le premier graphique présente l'ensemble de nos résultats, pour chaque technologie testée et par nombre de workers. Le temps d'exécution, sur l'axe y, est affiché en millisecondes. On remarque d'abord que les temps d'exécution diminuent bien avec l'augmentation du nombre de workers. Il y a néanmoins une exception à cette tendance, pour la version customisée de Spark, avec 4 workers. Cette hausse reste inexpliquée, et persiste malgré plusieurs exécutions de l'algorithme. Spark customisé s'exécute presque toujours plus rapidement que Spark. Pig performe plus lentement avec peu de workers, mais son temps d'exécution descend plus rapidement avec l’ajout de plusieurs workers. En effet, il est le plus performant avec 4 et 5 workers.
+
+Le premier graphique présente l'ensemble de nos résultats, pour chaque technologie testée et par nombre de workers. Le temps d'exécution, sur l'axe y, est affiché en millisecondes. On remarque d'abord que les temps d'exécution diminuent bien avec l'augmentation du nombre de workers. Cependant, il existe une exception à cette tendance, pour la version customisée de Spark, avec 4 workers où nous pouvons observer une hausse du temps d'exécution. Dans le but d'essayer d'expliquer cette dernière, nous avons relancé plusieurs fois cette version avec 4 workers. Malgré cela, les temps mesurés restent similaires et cette augmentation reste inexpliquée. Spark customisé s'exécute presque toujours plus rapidement que Spark. Pig performe plus lentement avec peu de workers, mais son temps d'exécution descend plus rapidement avec l’ajout de plusieurs workers. En effet, il est le plus performant avec 4 et 5 workers.
 
 ![](./schema/comparison_spark_custom-spark.png)
-Nous avons également inclus un graphique comparant uniquement Spark et Spark customisé, afin de mettre en évidence les apports de cette version modifiée. En effet, Spark customisé nous donne dans le meilleur cas des performances 14% meilleures. Le gain en temps d'exécution de l'utilisation de Spark customisé par rapport à Spark est reporté dans le tableau suivant:
+
+Nous avons également inclus un graphique comparant uniquement Spark et Spark customisé, afin de mettre en évidence les apports de cette version modifiée. En effet, Spark customisé nous donne dans le meilleur cas des performances 14% meilleures.
+Le gain en temps d'exécution de l'utilisation de Spark customisé par rapport à Spark est reporté dans le tableau suivant:
 
 | Nombre de workers | Gain en temps d'exécution <br> en utilisant Spark customisé |
 | --- | --- |
